@@ -1,0 +1,6 @@
+{
+  "name": "Deara Beauty Salon - Official Price List & Reservasi",
+  "description": "Katalog resmi layanan hair styling, haircut by owner, hair treatment, smoothing, dan hair colouring Deara Beauty Salon dengan reservasi instan WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,20 +1,23 @@
 import React from 'react';
 import { IMAGES } from '../assets/imageAssets';
 import { Sparkles, Shield, Heart, Award } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const StudioHighlight: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="suasana" className="py-16 sm:py-24 bg-[#F5EFE6]/50 border-y border-[#E8E2D9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="text-xs font-semibold tracking-widest uppercase text-[#8C6D58]">
-            Sanctuary & Ambiance
+            {t('ambiance.kicker')}
           </div>
           <h2 className="font-serif-brand text-3xl sm:text-4xl lg:text-5xl text-[#242120] mt-2">
-            Pengalaman Perawatan Eksklusif & Tenang
+            {t('ambiance.title')}
           </h2>
           <p className="text-sm sm:text-base text-[#665D54] mt-3 leading-relaxed">
-            Setiap sudut Deara dirancang khusus untuk kenyamanan privasi Anda. Nikmati atmosfer studio yang hangat, higienis, dan menenangkan pikiran dari kepenatan harian.
+            {t('ambiance.desc')}
           </p>
         </div>
 
@@ -31,26 +34,26 @@ export const StudioHighlight: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-4 text-white text-xs font-medium">
-                Ruang Konsultasi & Lounge Privat
+                {t('ambiance.card1Tag')}
               </div>
             </div>
 
             <div className="p-6 sm:p-8 space-y-3">
               <h3 className="font-serif-brand text-2xl text-[#242120]">
-                Konsultasi Personal Sebelum Setiap Sesi
+                {t('ambiance.card1Title')}
               </h3>
               <p className="text-xs sm:text-sm text-[#5C554E] leading-relaxed">
-                Kami memahami bahwa setiap kulit dan rambut memiliki karakteristik unik. Terapis kami meluangkan waktu berdiskusi mengenai riwayat kulit, preferensi bentuk alis, serta hasil akhir yang Anda impikan.
+                {t('ambiance.card1Desc')}
               </p>
               <div className="pt-3 border-t border-[#F2ECE1] flex items-center gap-4 text-xs text-[#7A7067]">
                 <div className="flex items-center gap-1.5">
                   <Heart className="w-4 h-4 text-[#8C6D58]" />
-                  <span>Pendekatan Individual</span>
+                  <span>{t('ambiance.card1F1')}</span>
                 </div>
                 <span>·</span>
                 <div className="flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4 text-[#8C6D58]" />
-                  <span>Teh Herbal Selamat Datang</span>
+                  <span>{t('ambiance.card1F2')}</span>
                 </div>
               </div>
             </div>
@@ -67,26 +70,26 @@ export const StudioHighlight: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-4 text-white text-xs font-medium">
-                Bahan Aktif Premium & Formula Organik
+                {t('ambiance.card2Tag')}
               </div>
             </div>
 
             <div className="p-6 sm:p-8 space-y-3">
               <h3 className="font-serif-brand text-2xl text-[#242120]">
-                Standar Produk Terpilih & Keamanan Teruji
+                {t('ambiance.card2Title')}
               </h3>
               <p className="text-xs sm:text-sm text-[#5C554E] leading-relaxed">
-                Hanya menggunakan serum, ekstrak alami, dan formula hipoalergenik yang terdaftar resmi. Aman untuk kulit sensitif, ibu menyusui, serta bebas pewangi keras atau zat berbahaya.
+                {t('ambiance.card2Desc')}
               </p>
               <div className="pt-3 border-t border-[#F2ECE1] flex items-center gap-4 text-xs text-[#7A7067]">
                 <div className="flex items-center gap-1.5">
                   <Shield className="w-4 h-4 text-[#8C6D58]" />
-                  <span>Sterilisasi Alat UV Medical</span>
+                  <span>{t('ambiance.card2F1')}</span>
                 </div>
                 <span>·</span>
                 <div className="flex items-center gap-1.5">
                   <Award className="w-4 h-4 text-[#8C6D58]" />
-                  <span>Hasil Natural & Tahan Lama</span>
+                  <span>{t('ambiance.card2F2')}</span>
                 </div>
               </div>
             </div>

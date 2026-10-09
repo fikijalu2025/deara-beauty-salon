@@ -12,6 +12,7 @@ import { ServicesPriceList } from './components/ServicesPriceList';
 import { StudioHighlight } from './components/StudioHighlight';
 import { HowToBook } from './components/HowToBook';
 import { FAQSection } from './components/FAQSection';
+import { SocialAndLocation } from './components/SocialAndLocation';
 import { Footer } from './components/Footer';
 import { EstimateDrawer } from './components/EstimateDrawer';
 import { PriceListManagerModal } from './components/PriceListManagerModal';
@@ -107,6 +108,8 @@ export default function App() {
         />
 
         <StudioHighlight />
+
+        <SocialAndLocation />
 
         <HowToBook />
 

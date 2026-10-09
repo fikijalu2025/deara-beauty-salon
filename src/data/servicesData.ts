@@ -719,9 +719,12 @@ export const SALON_INFO = {
   phone: '6285148394233',
   displayPhone: '+62 851-4839-4233',
   instagram: 'deara_beautysalon',
-  instagramUrl: 'https://instagram.com/deara_beautysalon',
+  instagramUrl: 'https://www.instagram.com/deara_beautysalon',
   tiktok: 'deara_beautysalon',
-  tiktokUrl: 'https://tiktok.com/@deara_beautysalon',
+  tiktokUrl: 'https://www.tiktok.com/@deara_beautysalon',
+  address: 'Jl. Raya Tajem No.55584, Kenayan, Wedomartani, Ngemplak, Sleman Regency, Special Region of Yogyakarta 55584',
+  mapsUrl: 'https://www.google.com/maps?q=Deara+Beauty+Salon,+Jl.+Raya+Tajem+No.55584,+Kenayan,+Wedomartani,+Ngemplak,+Sleman+Regency,+Special+Region+of+Yogyakarta+55584&ftid=0x2e7a5b0021b83171:0x4c86a39078bd8978&entry=gps&lucs=,94284454,94224825,94227247,94227248,94231188,94280564,47071704,47069508,94218641,94282134,94203019,47084304&g_ep=CAISEjI1LjM4LjAuODA3MzYwMDM5MBgAIIgnKmwsOTQyODQ0NTQsOTQyMjQ4MjUsOTQyMjcyNDcsOTQyMjcyNDgsOTQyMzExODgsOTQyODA1NjQsNDcwNzE3MDQsNDcwNjk1MDgsOTQyMTg2NDEsOTQyODIxMzQsOTQyMDMwMTksNDcwODQzMDRCAklE&skid=50922cf6-5b29-4291-83d5-1ed67c9e63f6&g_st=iw',
+  embedMapsUrl: 'https://maps.google.com/maps?q=Deara+Beauty+Salon,+Jl.+Raya+Tajem,+Kenayan,+Wedomartani,+Ngemplak,+Sleman,+Special+Region+of+Yogyakarta&t=&z=15&ie=UTF8&iwloc=&output=embed',
   maguwoBranch: 'Cabang Maguwo (Haircut by Owner Available)',
   rawWhatsAppUrl: 'https://api.whatsapp.com/send/?phone=6285148394233&text=Hi+Deara%2C+aku+mau+reservasi+%EF%BF%BD%EF%BF%BD&type=phone_number&app_absent=0'
 };

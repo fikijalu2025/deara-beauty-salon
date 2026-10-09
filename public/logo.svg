@@ -1,0 +1,27 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Circular Frame -->
+  <circle cx="120" cy="110" r="86" stroke="#C19F26" stroke-width="4.8" stroke-linecap="round"/>
+  <!-- Facial Profile -->
+  <path d="M 134 76 C 136 84, 137 92, 133 97 C 134 100, 142 104, 143 107 C 144 110, 139 112, 137 114 C 142 116, 143 121, 140 123 C 137 125, 134 126, 138 128 C 142 130, 141 133, 136 137 C 130 142, 125 145, 124 156 C 123 167, 126 178, 128 188" stroke="#C19F26" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Ear & Jawline -->
+  <path d="M 112 108 C 117 107, 122 113, 118 120 C 115 125, 110 126, 117 136 C 121 142, 125 146, 129 148" stroke="#C19F26" stroke-width="3.8" stroke-linecap="round"/>
+  <!-- Inner Bangs -->
+  <path d="M 124 74 C 132 85, 136 100, 130 112" stroke="#C19F26" stroke-width="3.8" stroke-linecap="round"/>
+  <path d="M 124 74 C 115 90, 115 106, 122 115" stroke="#C19F26" stroke-width="3.8" stroke-linecap="round"/>
+  <!-- Top Hair Wave -->
+  <path d="M 76 96 C 90 92, 108 72, 128 72 C 145 72, 155 86, 160 102" stroke="#C19F26" stroke-width="4.2" stroke-linecap="round"/>
+  <!-- Flowing Hair Strands Left -->
+  <path d="M 70 109 C 86 108, 102 96, 116 104" stroke="#C19F26" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 70 125 C 84 125, 104 116, 116 128 C 120 133, 114 142, 113 150 C 111 162, 115 174, 121 182" stroke="#C19F26" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 74 141 C 88 142, 100 134, 106 148 C 109 157, 106 168, 112 178" stroke="#C19F26" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 83 156 C 98 168, 110 162, 114 186" stroke="#C19F26" stroke-width="4" stroke-linecap="round"/>
+  <!-- Strands Under Chin -->
+  <path d="M 128 140 C 134 147, 142 153, 148 166 C 152 175, 149 184, 144 190" stroke="#C19F26" stroke-width="3.8" stroke-linecap="round"/>
+  <path d="M 134 158 C 140 166, 143 175, 137 186" stroke="#C19F26" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Tulip Flower -->
+  <path d="M 149 156 C 156 146, 163 134, 168 120 L 170 114" stroke="#C19F26" stroke-width="3.8" stroke-linecap="round"/>
+  <path d="M 158 144 C 153 140, 150 130, 151 123 C 156 128, 160 134, 163 138" stroke="#C19F26" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 166 112 C 160 106, 160 95, 166 89 C 170 95, 172 102, 171 110 Z" stroke="#C19F26" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 169 111 C 176 104, 180 94, 175 88 C 171 94, 169 101, 169 111 Z" stroke="#C19F26" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 169 89 L 171 85 L 173 90" stroke="#C19F26" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle, Sparkles } from 'lucide-react';
 import { WHATSAPP_CONFIG, formatRupiah, ServiceItem } from '../data/servicesData';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FloatingWidgetsProps {
   selectedServices: ServiceItem[];
@@ -11,6 +12,7 @@ export const FloatingWidgets: React.FC<FloatingWidgetsProps> = ({
   selectedServices,
   onOpenEstimator,
 }) => {
+  const { lang } = useLanguage();
   const count = selectedServices.length;
   const total = selectedServices.reduce((sum, s) => sum + s.price, 0);
 
@@ -24,11 +26,13 @@ export const FloatingWidgets: React.FC<FloatingWidgetsProps> = ({
         >
           <div className="flex items-center gap-1.5 text-xs">
             <Sparkles className="w-3.5 h-3.5 text-[#E6B87D]" />
-            <span className="font-semibold">{count} Dipilih:</span>
+            <span className="font-semibold">
+              {count} {lang === 'en' ? 'Selected:' : 'Dipilih:'}
+            </span>
             <span className="font-mono text-[#E6B87D]">{formatRupiah(total)}</span>
           </div>
           <span className="text-xs font-semibold pl-2 border-l border-white/20">
-            Lihat Booking →
+            {lang === 'en' ? 'View Booking →' : 'Lihat Booking →'}
           </span>
         </button>
       )}
@@ -38,12 +42,12 @@ export const FloatingWidgets: React.FC<FloatingWidgetsProps> = ({
         href={WHATSAPP_CONFIG.rawUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Hubungi WhatsApp Deara"
+        aria-label={lang === 'en' ? 'Contact Deara via WhatsApp' : 'Hubungi WhatsApp Deara'}
         className="pointer-events-auto group flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#1EBE5D] active:bg-[#18A04E] text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
       >
         <MessageCircle className="w-5 h-5 fill-white text-[#25D366]" />
         <span className="text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap pr-1">
-          Chat WhatsApp
+          {lang === 'en' ? 'WhatsApp Chat' : 'Chat WhatsApp'}
         </span>
       </a>
     </div>

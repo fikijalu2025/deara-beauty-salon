@@ -1,25 +1,28 @@
 import React from 'react';
 import { MessageCircle, CalendarCheck, Sparkles, CheckCircle2 } from 'lucide-react';
 import { WHATSAPP_CONFIG } from '../data/servicesData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const HowToBook: React.FC = () => {
+  const { t, lang } = useLanguage();
+
   const steps = [
     {
       num: '01',
-      title: 'Pilih Layanan & Paket',
-      desc: 'Eksplorasi price list lengkap di atas. Anda bisa memilih 1 layanan atau beberapa layanan sekaligus menggunakan fitur estimasi.',
+      title: t('howToBook.s1Title'),
+      desc: t('howToBook.s1Desc'),
       icon: Sparkles
     },
     {
       num: '02',
-      title: 'Kirim Chat WhatsApp',
-      desc: 'Klik tombol reservasi. Format pesan terisi otomatis sehingga Anda cukup mengirimkan pesan ke nomor resmi Deara 0851-4839-4233.',
+      title: t('howToBook.s2Title'),
+      desc: t('howToBook.s2Desc'),
       icon: MessageCircle
     },
     {
       num: '03',
-      title: 'Konfirmasi Jadwal',
-      desc: 'Admin Deara akan membalas ketersediaan jam dan mengunci slot khusus Anda. Datang tepat waktu dan rasakan relaksasi maksimal.',
+      title: t('howToBook.s3Title'),
+      desc: t('howToBook.s3Desc'),
       icon: CalendarCheck
     }
   ];
@@ -29,13 +32,13 @@ export const HowToBook: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-16">
           <div className="text-xs font-semibold tracking-widest uppercase text-[#8C6D58]">
-            Alur Reservasi Cepat
+            {t('howToBook.kicker')}
           </div>
           <h2 className="font-serif-brand text-3xl sm:text-4xl text-[#242120] mt-2">
-            3 Langkah Mudah Reservasi
+            {t('howToBook.title')}
           </h2>
           <p className="text-sm text-[#665D54] mt-2.5">
-            Tanpa formulir rumit atau proses berbelit. Cukup beberapa ketukan langsung via WhatsApp.
+            {t('howToBook.desc')}
           </p>
         </div>
 
@@ -67,7 +70,7 @@ export const HowToBook: React.FC = () => {
 
                 <div className="mt-6 pt-4 border-t border-[#F2ECE1] flex items-center gap-2 text-xs text-[#8C6D58] font-medium">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Proses reservasi ramah & responsif</span>
+                  <span>{lang === 'en' ? 'Friendly & prompt booking assistance' : 'Proses reservasi ramah & responsif'}</span>
                 </div>
               </div>
             );
@@ -78,10 +81,10 @@ export const HowToBook: React.FC = () => {
         <div className="mt-14 bg-[#2E2824] rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <h3 className="font-serif-brand text-2xl sm:text-3xl text-[#FAF8F5]">
-              Ingin berkonsultasi mengenai kondisi kulit Anda terlebih dahulu?
+              {t('howToBook.bannerTitle')}
             </h3>
             <p className="text-xs sm:text-sm text-[#B8ACA2] max-w-xl">
-              Admin kami dengan senang hati membantu merekomendasikan treatment paling pas untuk kebutuhan Anda.
+              {t('howToBook.bannerDesc')}
             </p>
           </div>
 
@@ -92,7 +95,7 @@ export const HowToBook: React.FC = () => {
             className="inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-semibold text-[#242120] bg-white hover:bg-[#F2ECE1] rounded-xl transition-all shadow-md shrink-0 whitespace-nowrap"
           >
             <MessageCircle className="w-4.5 h-4.5 text-[#25D366]" />
-            <span>Chat WhatsApp Sekarang</span>
+            <span>{t('howToBook.bannerBtn')}</span>
           </a>
         </div>
       </div>

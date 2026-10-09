@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FAQItem {
   q: string;
   a: string;
 }
 
-const FAQS: FAQItem[] = [
+const FAQS_ID: FAQItem[] = [
   {
     q: 'Bagaimana cara reservasi jadwal di Deara Beauty Salon?',
     a: 'Sangat mudah! Pilih layanan yang Anda inginkan dari katalog price list di atas, tentukan ukuran rambut (S, M, L, XL bila tersedia), lalu klik tombol "Pesan di WA" atau gunakan tombol "+ Pilih" untuk memilih beberapa treatment sekaligus. Format pesan terisi otomatis untuk chat WhatsApp kami di 0851-4839-4233.'
@@ -33,8 +34,38 @@ const FAQS: FAQItem[] = [
   }
 ];
 
+const FAQS_EN: FAQItem[] = [
+  {
+    q: 'How do I make a reservation at Deara Beauty Salon?',
+    a: 'It is very simple! Browse through our services catalog above, choose your hair length (S, M, L, XL if applicable), and tap "Book on WA" or use the "+ Select" button to combine multiple treatments. A pre-filled reservation message will open directly in WhatsApp (+62 851-4839-4233).'
+  },
+  {
+    q: 'How do I book a Haircut by Owner session?',
+    a: 'Haircut by Owner services (Signature Cut, Bangs/Fringe, Haircut + Wash + Styling) are exclusively available at our Maguwo Branch. You are welcome to request any hairstyle reference. We recommend booking several days in advance via WhatsApp as daily slots for the Owner are limited.'
+  },
+  {
+    q: 'What is the guide for hair length categories (S, M, L, XL)?',
+    a: 'Size S represents short hair (above shoulders or cheek length). Size M is shoulder length or just below shoulders. Size L is mid-back (bra-strap level). Size XL is waist-length or exceptionally dense/long hair. Our stylist will also verify this with you during consultation.'
+  },
+  {
+    q: 'Does the Fashion Colouring package include bleaching and vitamins?',
+    a: 'Yes! Fashion Colouring packages at Deara Beauty Salon include 2x Bleaching + 1 target shade, plus Hair Tonic, Vitamin treatment, and finishing blow/curling styling to keep your hair fiber nourished and radiant.'
+  },
+  {
+    q: 'Are there extra charges for specific hair conditions?',
+    a: 'For unusually dense hair, extra-long lengths, or hair extensions, there is a minor surcharge for added product and salon time. For corrective hair toning, removing black box dye, or multi-step bleaching, overcharges start from Rp 80,000.'
+  },
+  {
+    q: 'What payment methods are accepted at Deara Beauty Salon?',
+    a: 'We accept Cash, Bank Transfers (BCA, Mandiri, BRI, BNI), QRIS (GoPay, OVO, Dana, ShopeePay), and Debit Cards.'
+  }
+];
+
 export const FAQSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { lang, t } = useLanguage();
+
+  const faqs = lang === 'en' ? FAQS_EN : FAQS_ID;
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -45,18 +76,18 @@ export const FAQSection: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-14">
           <div className="text-xs font-semibold tracking-widest uppercase text-[#8C6D58]">
-            Informasi & Bantuan
+            {t('faq.kicker')}
           </div>
           <h2 className="font-serif-brand text-3xl sm:text-4xl text-[#242120] mt-2">
-            Pertanyaan yang Sering Diajukan
+            {t('faq.title')}
           </h2>
           <p className="text-xs sm:text-sm text-[#665D54] mt-2">
-            Ketahui lebih banyak seputar etika reservasi, layanan, dan kenyamanan Anda di Deara.
+            {t('faq.desc')}
           </p>
         </div>
 
         <div className="space-y-3">
-          {FAQS.map((item, idx) => {
+          {faqs.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
@@ -67,7 +98,9 @@ export const FAQSection: React.FC = () => {
                   onClick={() => toggle(idx)}
                   className="w-full p-5 text-left flex items-center justify-between gap-4 font-medium text-sm sm:text-base text-[#242120] hover:bg-[#FAF8F5] transition-colors"
                 >
-                  <span className="font-serif-brand text-lg">{item.q}</span>
+                  <div className="flex items-center gap-3">
+                    <span className="font-serif-brand text-lg">{item.q}</span>
+                  </div>
                   <ChevronDown
                     className={`w-4 h-4 text-[#8C6D58] shrink-0 transition-transform duration-300 ${
                       isOpen ? 'rotate-180' : ''

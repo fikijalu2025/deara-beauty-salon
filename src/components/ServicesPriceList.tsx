@@ -18,6 +18,7 @@ import {
   buildWhatsAppLink,
   formatRupiah
 } from '../data/servicesData';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ServicesPriceListProps {
   services: ServiceItem[];
@@ -32,6 +33,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
   onToggleSelectService,
   onOpenManager
 }) => {
+  const { lang, t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc'>('featured');
@@ -44,6 +46,33 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
       ...prev,
       [serviceId]: size
     }));
+  };
+
+  const getCategoryLabel = (catId: string, fallback: string) => {
+    if (lang === 'en') {
+      switch (catId) {
+        case 'all': return 'All Services';
+        case 'styling': return 'Hair Styling & Cut Team';
+        case 'owner': return 'Haircut by Owner (Maguwo)';
+        case 'package': return 'Hair & Treatment Packages';
+        case 'treatment-perm': return 'Hair Treatment & Perm';
+        case 'colouring': return 'Hair Colouring (Soft & Fashion)';
+        default: return fallback;
+      }
+    }
+    return fallback;
+  };
+
+  const getSizeLabel = (size: HairSize, original: string) => {
+    if (lang === 'en') {
+      switch (size) {
+        case 'S': return 'Short Hair (S)';
+        case 'M': return 'Medium Hair (M)';
+        case 'L': return 'Long Hair (L)';
+        case 'XL': return 'Extra Long Hair (XL)';
+      }
+    }
+    return original;
   };
 
   // Get active price & label for a service
@@ -116,7 +145,9 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
       sizeDetails = ` (${service.formattedPrice})`;
     }
 
-    const text = `Hi Deara, aku mau reservasi layanan *${service.name}*${sizeDetails}. Mohon info jadwal ketersediaan ya! ✨`;
+    const text = lang === 'en'
+      ? `Hi Deara, I'd like to book *${service.name}*${sizeDetails}. Please let me know the available time slots! ✨`
+      : `Hi Deara, aku mau reservasi layanan *${service.name}*${sizeDetails}. Mohon info jadwal ketersediaan ya! ✨`;
     const url = buildWhatsAppLink(text);
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -130,13 +161,13 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
             <div className="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#8C6D58]">
               <span>Deara Beauty Salon</span>
               <span aria-hidden="true">·</span>
-              <span>Official Price List</span>
+              <span>{t('services.kicker')}</span>
             </div>
             <h2 className="font-serif-brand text-3xl sm:text-4xl lg:text-5xl text-[#242120] mt-2">
-              Daftar Layanan & Treatment Rambut
+              {t('services.title')}
             </h2>
             <p className="text-[#6B5E52] mt-3 text-sm sm:text-base leading-relaxed">
-              Price list resmi Deara Beauty Salon. Pilih model potongan rambut, paket perawatan, hair spa, hingga pewarnaan fashion dengan pilihan panjang rambut (S, M, L, XL).
+              {t('services.desc')}
             </p>
           </div>
 
@@ -147,7 +178,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
               className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-[#524538] bg-[#EDE6DC] hover:bg-[#E2D8CC] border border-[#D5C9BA] rounded-xl transition-all shadow-xs"
             >
               <Settings2 className="w-4 h-4 text-[#8C6D58]" />
-              <span>Kelola & Edit Price List</span>
+              <span>{t('services.manageBtn')}</span>
             </button>
           </div>
         </div>
@@ -157,13 +188,13 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
           <div className="p-3.5 bg-[#F2ECE1] border border-[#DDD5C7] rounded-xl flex items-start gap-2.5 text-xs text-[#524538]">
             <Info className="w-4 h-4 text-[#8C6D58] shrink-0 mt-0.5" />
             <div>
-              <span className="font-semibold text-[#242120]">Haircut by Owner:</span> Tersedia khusus di <strong>Cabang Maguwo</strong> (Bebas request model rambut).
+              {t('services.noticeOwner')}
             </div>
           </div>
           <div className="p-3.5 bg-[#F2ECE1] border border-[#DDD5C7] rounded-xl flex items-start gap-2.5 text-xs text-[#524538]">
             <AlertCircle className="w-4 h-4 text-[#8C6D58] shrink-0 mt-0.5" />
             <div>
-              <span className="font-semibold text-[#242120]">Catatan Tambahan:</span> Extra charge untuk rambut tebal, panjang, & extensions. Over charge colouring (bleaching/mix warna/bekas hitam) mulai Rp 80.000.
+              {t('services.noticeExtra')}
             </div>
           </div>
         </div>
@@ -175,6 +206,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
             {CATEGORIES.map((cat) => {
               const count = categoryCounts[cat.id] || 0;
               const isActive = activeCategory === cat.id;
+              const label = getCategoryLabel(cat.id, cat.label);
               return (
                 <button
                   key={cat.id}
@@ -185,7 +217,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                       : 'bg-[#EFEAE2] text-[#63574C] hover:bg-[#E5DDD0] hover:text-[#242120]'
                   }`}
                 >
-                  <span>{cat.label}</span>
+                  <span>{label}</span>
                   <span className={`ml-2 text-xs ${isActive ? 'text-white/70' : 'text-[#8C7E72]'}`}>
                     ({count})
                   </span>
@@ -203,7 +235,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari layanan (contoh: owner, creambath, balayage, smoothing)..."
+                placeholder={t('services.searchPlaceholder')}
                 className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-white border border-[#DDD5C7] rounded-xl text-[#242120] placeholder-[#9C8F84] focus:outline-none focus:ring-2 focus:ring-[#8C6D58]/30 focus:border-[#8C6D58]"
               />
               {searchQuery && (
@@ -219,7 +251,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2 self-end sm:self-auto">
               <span className="text-xs text-[#7A7067] flex items-center gap-1">
-                <ArrowUpDown className="w-3.5 h-3.5" /> Urutkan:
+                <ArrowUpDown className="w-3.5 h-3.5" /> {t('services.sort')}
               </span>
               <select
                 value={sortBy}
@@ -227,9 +259,9 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                 aria-label="Urutkan daftar layanan"
                 className="px-3 py-2 text-xs font-medium bg-white border border-[#DDD5C7] rounded-xl text-[#423A33] focus:outline-none focus:border-[#8C6D58]"
               >
-                <option value="featured">Rekomendasi / Populer</option>
-                <option value="price-asc">Harga Terendah</option>
-                <option value="price-desc">Harga Tertinggi</option>
+                <option value="featured">{t('services.sortFeatured')}</option>
+                <option value="price-asc">{t('services.sortAsc')}</option>
+                <option value="price-desc">{t('services.sortDesc')}</option>
               </select>
             </div>
           </div>
@@ -239,9 +271,9 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
         <div className="mt-10">
           {filteredServices.length === 0 ? (
             <div className="text-center py-16 bg-[#F5EFE6]/60 rounded-2xl border border-dashed border-[#DDD5C7] p-8">
-              <div className="font-serif-brand text-2xl text-[#242120]">Layanan Tidak Ditemukan</div>
+              <div className="font-serif-brand text-2xl text-[#242120]">{t('services.notFoundTitle')}</div>
               <p className="text-xs sm:text-sm text-[#7A7067] mt-2 max-w-md mx-auto">
-                Tidak ada layanan yang cocok dengan kata kunci "{searchQuery}".
+                {t('services.notFoundDesc')}
               </p>
               <div className="mt-5 flex justify-center gap-3">
                 <button
@@ -251,7 +283,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                   }}
                   className="px-4 py-2 text-xs font-medium text-[#242120] bg-white border border-[#DDD5C7] rounded-lg hover:bg-[#F2ECE1]"
                 >
-                  Reset Filter
+                  {t('services.resetFilter')}
                 </button>
               </div>
             </div>
@@ -260,6 +292,8 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
               {filteredServices.map((service) => {
                 const currentState = getServiceCurrentState(service);
                 const isSelected = selectedServiceIds.includes(service.id);
+                const categoryLabel = getCategoryLabel(service.category, service.categoryLabel);
+                const sizeLabelTranslated = currentState.size ? getSizeLabel(currentState.size, currentState.sizeLabel || '') : '';
 
                 return (
                   <div
@@ -274,7 +308,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                       {/* Top Metadata */}
                       <div className="flex items-center justify-between gap-2 text-xs text-[#7A7067] pb-3 border-b border-[#F0EAE1]">
                         <span className="font-medium text-[#8C6D58]">
-                          {service.categoryLabel}
+                          {categoryLabel}
                         </span>
                         {service.duration && (
                           <div className="flex items-center gap-1.5 font-mono tabular-nums">
@@ -295,7 +329,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                           </span>
                         ) : service.isPopular ? (
                           <span className="shrink-0 text-[10px] font-semibold text-[#8C5D39] bg-[#F7ECE1] px-2 py-0.5 rounded border border-[#E8D1BE]">
-                            Favorit
+                            {t('services.favorite')}
                           </span>
                         ) : null}
                       </div>
@@ -304,9 +338,9 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                       {service.sizePrices && service.sizePrices.length > 0 && (
                         <div className="mt-3.5 p-2.5 bg-[#FAF6F0] rounded-xl border border-[#EDE2D5] space-y-2">
                           <div className="text-[11px] font-medium text-[#7A7067] flex items-center justify-between">
-                            <span>Pilih Panjang Rambut:</span>
+                            <span>{t('services.hairLength')}</span>
                             <span className="text-[#8C6D58] font-semibold">
-                              {currentState.sizeLabel}
+                              {sizeLabelTranslated}
                             </span>
                           </div>
                           <div className="grid grid-cols-4 gap-1.5">
@@ -343,7 +377,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                         </span>
                         {currentState.size && (
                           <span className="text-xs text-[#8C7E72] ml-2">
-                            (Ukuran {currentState.size})
+                            ({lang === 'en' ? `Size ${currentState.size}` : `Ukuran ${currentState.size}`})
                           </span>
                         )}
                       </div>
@@ -357,7 +391,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                       {service.features && service.features.length > 0 && (
                         <div className="mt-4 pt-3.5 border-t border-[#F2ECE1] space-y-1.5">
                           <div className="text-[10px] font-semibold tracking-wider uppercase text-[#8C7E72]">
-                            Termasuk dalam sesi:
+                            {t('services.included')}
                           </div>
                           <ul className="space-y-1 text-xs text-[#4F4741]">
                             {service.features.map((feat, idx) => (
@@ -386,7 +420,7 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                         className="flex-1 inline-flex items-center justify-center gap-2 px-3.5 py-2.5 text-xs font-semibold text-white bg-[#2E2824] hover:bg-[#433B35] rounded-xl transition-all shadow-xs"
                       >
                         <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
-                        <span>Pesan di WA</span>
+                        <span>{t('services.bookOnWa')}</span>
                       </button>
 
                       {/* Add to Estimate Multi-Select */}
@@ -403,17 +437,17 @@ export const ServicesPriceList: React.FC<ServicesPriceListProps> = ({
                             ? 'bg-[#8C6D58] text-white border-[#8C6D58]'
                             : 'bg-[#F7F4EE] hover:bg-[#EFEAE2] text-[#5C554E] border-[#DDD5C7]'
                         }`}
-                        title={isSelected ? 'Keluarkan dari estimasi' : 'Tambahkan ke estimasi total'}
+                        title={isSelected ? (lang === 'en' ? 'Remove from estimate' : 'Keluarkan dari estimasi') : (lang === 'en' ? 'Add to estimate' : 'Tambahkan ke estimasi total')}
                       >
                         {isSelected ? (
                           <>
                             <Check className="w-3.5 h-3.5" />
-                            <span>Terpilih</span>
+                            <span>{t('services.chosen')}</span>
                           </>
                         ) : (
                           <>
                             <Plus className="w-3.5 h-3.5" />
-                            <span>Pilih</span>
+                            <span>{t('services.choose')}</span>
                           </>
                         )}
                       </button>

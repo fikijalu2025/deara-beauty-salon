@@ -1,8 +1,29 @@
-node_modules/
-build/
-dist/
-coverage/
-.DS_Store
-*.log
-.env*
+/node_modules
+/vendor
+/dist
+/build
+.env
+.env.backup
+.env.production
 !.env.example
+
+# Laravel storage & cache
+/storage/*.key
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*.log
+/bootstrap/cache/*.php
+
+# SQLite database
+/database/*.sqlite-journal
+
+# Vercel & IDE
+.vercel
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

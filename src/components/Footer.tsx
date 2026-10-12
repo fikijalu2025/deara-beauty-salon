@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageCircle, Clock, MapPin, Heart, Settings2, ExternalLink } from 'lucide-react';
-import { WHATSAPP_CONFIG, SALON_INFO } from '../data/servicesData';
+import { WHATSAPP_CONFIG, SALON_INFO, SALON_BRANCHES } from '../data/servicesData';
 import { DearaLogo } from './DearaLogo';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -12,9 +12,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenManager }) => {
   const { t, lang } = useLanguage();
 
   return (
-    <footer className="bg-[#24201D] text-[#D8CFCA] pt-16 pb-12 border-t border-[#3B342F]">
+    <footer className="bg-[#24201D] dark:bg-[#0F0D0B] text-[#D8CFCA] dark:text-[#C5BBAF] pt-16 pb-12 border-t border-[#3B342F] dark:border-[#241E19] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#3B342F]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#3B342F] dark:border-[#241E19]">
           {/* Brand Info */}
           <div className="md:col-span-5 space-y-4">
             <DearaLogo size={46} variant="gold" />
@@ -107,32 +107,61 @@ export const Footer: React.FC<FooterProps> = ({ onOpenManager }) => {
               {t('footer.hoursTitle')}
             </div>
             <div className="space-y-2 text-xs text-[#A89E97]">
-              <div className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-[#C29D7D] shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-white font-medium">{t('footer.everyDay')}</div>
-                  <div>{t('footer.hoursDetail')}</div>
+              <div className="p-3 rounded-xl bg-black/20 border border-white/5 space-y-2">
+                <div className="flex items-center gap-1.5 text-white font-medium text-xs">
+                  <Clock className="w-3.5 h-3.5 text-[#C29D7D]" />
+                  <span>{lang === 'en' ? 'Branch Operating Hours' : 'Jam Operasional Cabang'}</span>
+                </div>
+                <div className="space-y-1.5 text-[11px] pt-1">
+                  <div className="flex items-center justify-between gap-2 border-b border-white/5 pb-1">
+                    <span className="text-[#D8CFCA]">Cabang 1 (Maguwo):</span>
+                    <span className="font-semibold text-[#E6B87D] font-mono">10.00 - 20.00 WIB</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[#D8CFCA]">Cabang 2 (Pakualaman):</span>
+                    <span className="font-semibold text-[#E6B87D] font-mono">09.00 - 19.00 WIB</span>
+                  </div>
+                </div>
+                <div className="text-[10px] text-[#A89E97] pt-0.5">
+                  {lang === 'en' ? 'Open everyday (Monday - Sunday)' : 'Buka setiap hari (Senin - Minggu)'}
                 </div>
               </div>
-              <div className="flex items-start gap-2 pt-2">
-                <MapPin className="w-4 h-4 text-[#C29D7D] shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-white font-medium">Deara Beauty Salon</div>
-                  <div className="text-[11px] leading-relaxed text-[#B8ACA2]">
-                    {SALON_INFO.address}
-                  </div>
-                  <div className="pt-1.5">
-                    <a
-                      href={SALON_INFO.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] text-[#E6B87D] hover:underline"
-                    >
-                      <span>{t('location.openInApp')}</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
+
+              <div className="pt-2 space-y-3">
+                <div className="text-[11px] font-semibold text-[#FAF8F5] uppercase tracking-wider flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#C29D7D]" />
+                  <span>{lang === 'en' ? '2 Salon Branches (Yogyakarta)' : '2 Lokasi Cabang (Yogyakarta)'}</span>
                 </div>
+
+                {SALON_BRANCHES.map((branch) => (
+                  <div key={branch.id} className="p-2.5 rounded-lg bg-black/20 border border-white/5 space-y-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#C29D7D]/20 text-[#E6B87D] uppercase">
+                        {branch.badge}
+                      </span>
+                      <span className="text-[11px] text-[#A89E97]">{branch.city}</span>
+                    </div>
+                    <div className="text-white text-xs font-medium">{branch.shortName}</div>
+                    <div className="text-[10px] text-[#E6B87D] font-mono flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-[#C29D7D]" />
+                      <span>{branch.openingHours}</span>
+                    </div>
+                    <div className="text-[11px] text-[#B8ACA2] line-clamp-2 leading-relaxed">
+                      {branch.address}
+                    </div>
+                    <div className="pt-1">
+                      <a
+                        href={branch.mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[11px] text-[#E6B87D] hover:underline"
+                      >
+                        <span>Google Maps</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

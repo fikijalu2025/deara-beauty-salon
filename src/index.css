@@ -11,6 +11,10 @@
     font-family: var(--font-sans);
   }
 
+  html.dark {
+    color-scheme: dark;
+  }
+
   h1, h2, h3, .font-serif-brand {
     font-family: var(--font-serif);
   }
@@ -23,10 +27,19 @@
 ::-webkit-scrollbar-track {
   background: #FAF8F5;
 }
+.dark ::-webkit-scrollbar-track {
+  background: #141210;
+}
 ::-webkit-scrollbar-thumb {
   background: #D9D2C7;
   border-radius: 4px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: #3A332C;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #B8ADA0;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #52473D;
 }

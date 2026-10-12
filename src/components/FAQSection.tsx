@@ -9,12 +9,16 @@ interface FAQItem {
 
 const FAQS_ID: FAQItem[] = [
   {
+    q: 'Di mana saja lokasi dan jam operasional cabang Deara Beauty Salon?',
+    a: 'Deara Beauty Salon memiliki 2 cabang resmi di Yogyakarta: (1) Cabang Maguwo (Cabang ke 1) di Jl. Raya Tajem No.55584, Wedomartani, Sleman — Jam buka: 10.00 - 20.00 WIB (tersedia layanan Haircut by Owner); dan (2) Cabang Pakualaman (Cabang ke 2) di Jl. Masjid No.10, Gunungketur, Pakualaman, Kota Yogyakarta — Jam buka: 09.00 - 19.00 WIB dengan atmosfer privat dan tenang di pusat kota.'
+  },
+  {
     q: 'Bagaimana cara reservasi jadwal di Deara Beauty Salon?',
     a: 'Sangat mudah! Pilih layanan yang Anda inginkan dari katalog price list di atas, tentukan ukuran rambut (S, M, L, XL bila tersedia), lalu klik tombol "Pesan di WA" atau gunakan tombol "+ Pilih" untuk memilih beberapa treatment sekaligus. Format pesan terisi otomatis untuk chat WhatsApp kami di 0851-4839-4233.'
   },
   {
     q: 'Bagaimana cara booking layanan Haircut by Owner?',
-    a: 'Layanan Haircut by Owner (Signature Haircut, Haircut Poni, Haircut + Cuci + Styling) tersedia khusus di Cabang Maguwo. Anda bebas request model rambut referensi apa saja. Disarankan booking beberapa hari sebelumnya via WhatsApp karena slot harian Owner terbatas.'
+    a: 'Layanan Haircut by Owner (Signature Haircut, Haircut Poni, Haircut + Cuci + Styling) tersedia khusus di Cabang Maguwo (Cabang ke 1). Anda bebas request model rambut referensi apa saja. Disarankan booking beberapa hari sebelumnya via WhatsApp karena slot harian Owner terbatas.'
   },
   {
     q: 'Bagaimana panduan penentuan ukuran panjang rambut (S, M, L, XL)?',
@@ -36,12 +40,16 @@ const FAQS_ID: FAQItem[] = [
 
 const FAQS_EN: FAQItem[] = [
   {
+    q: 'Where are the Deara Beauty Salon branches and what are their operating hours?',
+    a: 'Deara Beauty Salon has 2 official branches in Yogyakarta: (1) Maguwo Branch (Branch 1) at Jl. Raya Tajem No.55584, Wedomartani, Sleman — Open: 10:00 AM - 08:00 PM WIB (Haircut by Owner available); and (2) Pakualaman Branch (Branch 2) at Jl. Masjid No.10, Gunungketur, Pakualaman, Yogyakarta City — Open: 09:00 AM - 07:00 PM WIB with a serene sanctuary in the city center.'
+  },
+  {
     q: 'How do I make a reservation at Deara Beauty Salon?',
     a: 'It is very simple! Browse through our services catalog above, choose your hair length (S, M, L, XL if applicable), and tap "Book on WA" or use the "+ Select" button to combine multiple treatments. A pre-filled reservation message will open directly in WhatsApp (+62 851-4839-4233).'
   },
   {
     q: 'How do I book a Haircut by Owner session?',
-    a: 'Haircut by Owner services (Signature Cut, Bangs/Fringe, Haircut + Wash + Styling) are exclusively available at our Maguwo Branch. You are welcome to request any hairstyle reference. We recommend booking several days in advance via WhatsApp as daily slots for the Owner are limited.'
+    a: 'Haircut by Owner services (Signature Cut, Bangs/Fringe, Haircut + Wash + Styling) are exclusively available at our Maguwo Branch (Branch 1). You are welcome to request any hairstyle reference. We recommend booking several days in advance via WhatsApp as daily slots for the Owner are limited.'
   },
   {
     q: 'What is the guide for hair length categories (S, M, L, XL)?',
@@ -72,16 +80,16 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-16 sm:py-24 bg-[#FAF8F5] border-t border-[#E8E2D9]">
+    <section id="faq" className="py-16 sm:py-24 bg-[#FAF8F5] dark:bg-[#141210] border-t border-[#E8E2D9] dark:border-[#2D2721] transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-14">
-          <div className="text-xs font-semibold tracking-widest uppercase text-[#8C6D58]">
+          <div className="text-xs font-semibold tracking-widest uppercase text-[#8C6D58] dark:text-[#D8B168]">
             {t('faq.kicker')}
           </div>
-          <h2 className="font-serif-brand text-3xl sm:text-4xl text-[#242120] mt-2">
+          <h2 className="font-serif-brand text-3xl sm:text-4xl text-[#242120] dark:text-[#FAF5EE] mt-2">
             {t('faq.title')}
           </h2>
-          <p className="text-xs sm:text-sm text-[#665D54] mt-2">
+          <p className="text-xs sm:text-sm text-[#665D54] dark:text-[#BAACA0] mt-2">
             {t('faq.desc')}
           </p>
         </div>
@@ -92,24 +100,24 @@ export const FAQSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-xl border border-[#E8E1D5] overflow-hidden transition-colors"
+                className="bg-white dark:bg-[#1A1715] rounded-xl border border-[#E8E1D5] dark:border-[#302A24] overflow-hidden transition-colors"
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-medium text-sm sm:text-base text-[#242120] hover:bg-[#FAF8F5] transition-colors"
+                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-medium text-sm sm:text-base text-[#242120] dark:text-[#FAF5EE] hover:bg-[#FAF8F5] dark:hover:bg-[#221D1A] transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <span className="font-serif-brand text-lg">{item.q}</span>
                   </div>
                   <ChevronDown
-                    className={`w-4 h-4 text-[#8C6D58] shrink-0 transition-transform duration-300 ${
+                    className={`w-4 h-4 text-[#8C6D58] dark:text-[#D8B168] shrink-0 transition-transform duration-300 ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[#5C554E] leading-relaxed border-t border-[#F5EFE6]">
+                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[#5C554E] dark:text-[#B5A89C] leading-relaxed border-t border-[#F5EFE6] dark:border-[#28221D]">
                     {item.a}
                   </div>
                 )}

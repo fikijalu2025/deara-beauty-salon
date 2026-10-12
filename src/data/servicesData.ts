@@ -713,6 +713,60 @@ export const INITIAL_SERVICES: ServiceItem[] = [
   }
 ];
 
+export interface BranchInfo {
+  id: 'maguwo' | 'pakualaman';
+  number: number;
+  badge: string;
+  name: string;
+  shortName: string;
+  city: string;
+  address: string;
+  mapsUrl: string;
+  embedMapsUrl: string;
+  openingHours: string;
+  openingHoursEn: string;
+  features: string[];
+}
+
+export const SALON_BRANCHES: BranchInfo[] = [
+  {
+    id: 'maguwo',
+    number: 1,
+    badge: 'Cabang ke 1',
+    name: 'Deara Beauty Salon Cabang Maguwo - Cabang ke 1',
+    shortName: 'Cabang Maguwo',
+    city: 'Sleman, D.I. Yogyakarta',
+    address: 'Jl. Raya Tajem No.55584, Kenayan, Wedomartani, Ngemplak, Sleman Regency, Special Region of Yogyakarta 55584',
+    mapsUrl: 'https://maps.app.goo.gl/mzaBjsr6BBR3SrCT7',
+    embedMapsUrl: 'https://maps.google.com/maps?q=Jl.+Raya+Tajem+No.55584,+Kenayan,+Wedomartani,+Ngemplak,+Sleman+Regency,+Special+Region+of+Yogyakarta+55584&t=&z=15&ie=UTF8&iwloc=&output=embed',
+    openingHours: '10.00 - 20.00 WIB',
+    openingHoursEn: '10:00 AM - 08:00 PM WIB',
+    features: [
+      'Tersedia layanan Haircut by Owner',
+      'Akses jalan utama Jl. Raya Tajem (Maguwo)',
+      'Area parkir kendaraan roda 2 & roda 4 yang nyaman'
+    ]
+  },
+  {
+    id: 'pakualaman',
+    number: 2,
+    badge: 'Cabang ke 2',
+    name: 'Deara Beauty Cabang Pakualaman - Cabang ke 2',
+    shortName: 'Cabang Pakualaman',
+    city: 'Kota Yogyakarta',
+    address: 'Jl. Masjid No.10, RT.36/RW.09, Gunungketur, Pakualaman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55111, Indonesia',
+    mapsUrl: 'https://maps.app.goo.gl/Zff7RksY5JUeXXw68',
+    embedMapsUrl: 'https://maps.google.com/maps?q=Jl.+Masjid+No.10,+RT.36/RW.09,+Gunungketur,+Pakualaman,+Kota+Yogyakarta,+Daerah+Istimewa+Yogyakarta+55111&t=&z=15&ie=UTF8&iwloc=&output=embed',
+    openingHours: '09.00 - 19.00 WIB',
+    openingHoursEn: '09:00 AM - 07:00 PM WIB',
+    features: [
+      'Pusat Kota Yogyakarta (area cagar budaya Pakualaman)',
+      'Suasana privat, tenang, dan homey sanctuary',
+      'Layanan Hair Styling, Smoothing, Colouring & Treatment lengkap'
+    ]
+  }
+];
+
 export const SALON_INFO = {
   brandName: 'DEARA BEAUTY SALON',
   tagline: 'Beauty Salon & Hair Care Treatment',
@@ -722,11 +776,13 @@ export const SALON_INFO = {
   instagramUrl: 'https://www.instagram.com/deara_beautysalon',
   tiktok: 'deara_beautysalon',
   tiktokUrl: 'https://www.tiktok.com/@deara_beautysalon',
-  address: 'Jl. Raya Tajem No.55584, Kenayan, Wedomartani, Ngemplak, Sleman Regency, Special Region of Yogyakarta 55584',
-  mapsUrl: 'https://www.google.com/maps?q=Deara+Beauty+Salon,+Jl.+Raya+Tajem+No.55584,+Kenayan,+Wedomartani,+Ngemplak,+Sleman+Regency,+Special+Region+of+Yogyakarta+55584&ftid=0x2e7a5b0021b83171:0x4c86a39078bd8978&entry=gps&lucs=,94284454,94224825,94227247,94227248,94231188,94280564,47071704,47069508,94218641,94282134,94203019,47084304&g_ep=CAISEjI1LjM4LjAuODA3MzYwMDM5MBgAIIgnKmwsOTQyODQ0NTQsOTQyMjQ4MjUsOTQyMjcyNDcsOTQyMjcyNDgsOTQyMzExODgsOTQyODA1NjQsNDcwNzE3MDQsNDcwNjk1MDgsOTQyMTg2NDEsOTQyODIxMzQsOTQyMDMwMTksNDcwODQzMDRCAklE&skid=50922cf6-5b29-4291-83d5-1ed67c9e63f6&g_st=iw',
-  embedMapsUrl: 'https://maps.google.com/maps?q=Deara+Beauty+Salon,+Jl.+Raya+Tajem,+Kenayan,+Wedomartani,+Ngemplak,+Sleman,+Special+Region+of+Yogyakarta&t=&z=15&ie=UTF8&iwloc=&output=embed',
-  maguwoBranch: 'Cabang Maguwo (Haircut by Owner Available)',
-  rawWhatsAppUrl: 'https://api.whatsapp.com/send/?phone=6285148394233&text=Hi+Deara%2C+aku+mau+reservasi+%EF%BF%BD%EF%BF%BD&type=phone_number&app_absent=0'
+  branches: SALON_BRANCHES,
+  address: SALON_BRANCHES[0].address,
+  mapsUrl: 'https://maps.app.goo.gl/mzaBjsr6BBR3SrCT7',
+  embedMapsUrl: SALON_BRANCHES[0].embedMapsUrl,
+  maguwoBranch: 'Deara Beauty Salon Cabang Maguwo - Cabang ke 1',
+  pakualamanBranch: 'Deara Beauty Cabang Pakualaman - Cabang ke 2',
+  rawWhatsAppUrl: 'https://api.whatsapp.com/send/?phone=6285148394233&text=Hi+Deara%2C+aku+mau+reservasi+%E2%9C%A8&type=phone_number&app_absent=0'
 };
 
 export const WHATSAPP_CONFIG = {

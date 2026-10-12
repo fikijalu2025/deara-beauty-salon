@@ -22,16 +22,16 @@ export const FloatingWidgets: React.FC<FloatingWidgetsProps> = ({
       {count > 0 && (
         <button
           onClick={onOpenEstimator}
-          className="pointer-events-auto flex items-center gap-3 px-4 py-2.5 rounded-full bg-[#2E2824] text-white shadow-xl hover:bg-[#433B35] transition-all hover:scale-105 border border-white/20 animate-fade-in"
+          className="pointer-events-auto flex items-center gap-3 px-4 py-2.5 rounded-full bg-[#2E2824] dark:bg-[#D4A76A] text-white dark:text-[#181410] shadow-xl hover:bg-[#433B35] dark:hover:bg-[#E2BA84] transition-all hover:scale-105 border border-white/20 dark:border-black/20 animate-fade-in cursor-pointer font-medium"
         >
           <div className="flex items-center gap-1.5 text-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#E6B87D]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#E6B87D] dark:text-[#181410]" />
             <span className="font-semibold">
               {count} {lang === 'en' ? 'Selected:' : 'Dipilih:'}
             </span>
-            <span className="font-mono text-[#E6B87D]">{formatRupiah(total)}</span>
+            <span className="font-mono text-[#E6B87D] dark:text-[#181410] font-bold">{formatRupiah(total)}</span>
           </div>
-          <span className="text-xs font-semibold pl-2 border-l border-white/20">
+          <span className="text-xs font-semibold pl-2 border-l border-white/20 dark:border-black/20">
             {lang === 'en' ? 'View Booking →' : 'Lihat Booking →'}
           </span>
         </button>

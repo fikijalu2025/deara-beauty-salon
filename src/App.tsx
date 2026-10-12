@@ -25,7 +25,17 @@ export default function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          // Ensure duration field is present from INITIAL_SERVICES if missing in older cached data
+          return parsed.map((item: ServiceItem) => {
+            if (!item.duration) {
+              const matched = INITIAL_SERVICES.find((init) => init.id === item.id);
+              return {
+                ...item,
+                duration: matched?.duration || '45-60 Menit'
+              };
+            }
+            return item;
+          });
         }
       }
     } catch {
@@ -88,7 +98,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#242120]">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#242120] dark:bg-[#141210] dark:text-[#EDE8E1] transition-colors duration-300">
       {/* Top Navigation */}
       <Navbar
         onOpenManager={() => setIsManagerOpen(true)}

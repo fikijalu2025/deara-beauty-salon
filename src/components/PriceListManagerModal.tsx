@@ -193,20 +193,20 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs">
-      <div className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-[#FAF8F5] rounded-2xl border border-[#DDD5C7] shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-[#FAF8F5] dark:bg-[#181512] rounded-2xl border border-[#DDD5C7] dark:border-[#332C25] shadow-2xl overflow-hidden transition-colors duration-300">
         {/* Modal Top Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E8E2D9] bg-white">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E8E2D9] dark:border-[#2D2721] bg-white dark:bg-[#1E1A17]">
           <div>
-            <div className="text-xs uppercase font-medium tracking-wider text-[#8C6D58]">
+            <div className="text-xs uppercase font-medium tracking-wider text-[#8C6D58] dark:text-[#D8B168]">
               Pusat Data & Katalog
             </div>
-            <h3 className="font-serif-brand text-xl sm:text-2xl text-[#242120]">
+            <h3 className="font-serif-brand text-xl sm:text-2xl text-[#242120] dark:text-[#FAF5EE]">
               Kelola & Input Data Price List
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-[#7A7067] hover:text-[#242120] rounded-lg hover:bg-[#F2ECE1]"
+            className="p-2 text-[#7A7067] dark:text-[#A09384] hover:text-[#242120] dark:hover:text-white rounded-lg hover:bg-[#F2ECE1] dark:hover:bg-[#2C2620] cursor-pointer"
             aria-label="Tutup editor"
           >
             <X className="w-5 h-5" />
@@ -214,23 +214,23 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
         </div>
 
         {/* Tab Selection */}
-        <div className="flex items-center gap-2 px-6 pt-3 bg-white border-b border-[#E8E2D9]">
+        <div className="flex items-center gap-2 px-6 pt-3 bg-white dark:bg-[#1E1A17] border-b border-[#E8E2D9] dark:border-[#2D2721]">
           <button
             onClick={() => setActiveTab('manage')}
-            className={`pb-3 text-xs sm:text-sm font-medium border-b-2 transition-all ${
+            className={`pb-3 text-xs sm:text-sm font-medium border-b-2 transition-all cursor-pointer ${
               activeTab === 'manage'
-                ? 'border-[#8C6D58] text-[#242120]'
-                : 'border-transparent text-[#7A7067] hover:text-[#242120]'
+                ? 'border-[#8C6D58] dark:border-[#D4A76A] text-[#242120] dark:text-[#FAF5EE]'
+                : 'border-transparent text-[#7A7067] dark:text-[#9E9284] hover:text-[#242120] dark:hover:text-[#FAF5EE]'
             }`}
           >
             Input & Edit Visual ({services.length} Item)
           </button>
           <button
             onClick={() => setActiveTab('json')}
-            className={`pb-3 text-xs sm:text-sm font-medium border-b-2 transition-all ${
+            className={`pb-3 text-xs sm:text-sm font-medium border-b-2 transition-all cursor-pointer ${
               activeTab === 'json'
-                ? 'border-[#8C6D58] text-[#242120]'
-                : 'border-transparent text-[#7A7067] hover:text-[#242120]'
+                ? 'border-[#8C6D58] dark:border-[#D4A76A] text-[#242120] dark:text-[#FAF5EE]'
+                : 'border-transparent text-[#7A7067] dark:text-[#9E9284] hover:text-[#242120] dark:hover:text-[#FAF5EE]'
             }`}
           >
             Impor / Ekspor JSON Price List
@@ -244,17 +244,17 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
               {/* Form to Add / Edit */}
               <form
                 onSubmit={handleSaveService}
-                className="bg-white p-5 sm:p-6 rounded-xl border border-[#E4DDD2] shadow-xs space-y-4"
+                className="bg-white dark:bg-[#1E1A17] p-5 sm:p-6 rounded-xl border border-[#E4DDD2] dark:border-[#332C25] shadow-xs space-y-4"
               >
                 <div className="flex items-center justify-between">
-                  <h4 className="font-serif-brand text-lg text-[#242120]">
+                  <h4 className="font-serif-brand text-lg text-[#242120] dark:text-[#FAF5EE]">
                     {editingId ? 'Edit Layanan' : 'Tambah Layanan Baru ke Price List'}
                   </h4>
                   {editingId && (
                     <button
                       type="button"
                       onClick={handleCancelEdit}
-                      className="text-xs text-[#8C6D58] hover:underline"
+                      className="text-xs text-[#8C6D58] dark:text-[#D4A76A] hover:underline cursor-pointer"
                     >
                       Batal Edit (Buat Baru)
                     </button>
@@ -264,7 +264,7 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Name */}
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-[#524B45] mb-1">
+                    <label className="block text-xs font-semibold text-[#524B45] dark:text-[#C5B9AC] mb-1">
                       Nama Layanan / Treatment *
                     </label>
                     <input
@@ -273,19 +273,19 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Contoh: Signature Hydro Facial Glow"
-                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#DDD5C7] rounded-lg text-[#242120] focus:ring-1 focus:ring-[#8C6D58] focus:border-[#8C6D58]"
+                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] dark:bg-[#25201B] border border-[#DDD5C7] dark:border-[#3D352D] rounded-lg text-[#242120] dark:text-[#FAF5EE] focus:ring-1 focus:ring-[#8C6D58] focus:border-[#8C6D58]"
                     />
                   </div>
 
                   {/* Category */}
                   <div>
-                    <label className="block text-xs font-semibold text-[#524B45] mb-1">
+                    <label className="block text-xs font-semibold text-[#524B45] dark:text-[#C5B9AC] mb-1">
                       Kategori Layanan
                     </label>
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value as any)}
-                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#DDD5C7] rounded-lg text-[#242120] focus:border-[#8C6D58]"
+                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] dark:bg-[#25201B] border border-[#DDD5C7] dark:border-[#3D352D] rounded-lg text-[#242120] dark:text-[#FAF5EE] focus:border-[#8C6D58]"
                     >
                       <option value="styling">Hair Styling & Cut Team</option>
                       <option value="owner">Haircut by Owner (Maguwo)</option>
@@ -297,7 +297,7 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
 
                   {/* Price */}
                   <div>
-                    <label className="block text-xs font-semibold text-[#524B45] mb-1">
+                    <label className="block text-xs font-semibold text-[#524B45] dark:text-[#C5B9AC] mb-1">
                       Harga (IDR / Rupiah) *
                     </label>
                     <input
@@ -307,16 +307,16 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                       step="5000"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
-                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#DDD5C7] rounded-lg text-[#242120] focus:border-[#8C6D58]"
+                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] dark:bg-[#25201B] border border-[#DDD5C7] dark:border-[#3D352D] rounded-lg text-[#242120] dark:text-[#FAF5EE] focus:border-[#8C6D58]"
                     />
-                    <div className="text-[11px] text-[#7A7067] mt-1 font-mono">
+                    <div className="text-[11px] text-[#7A7067] dark:text-[#A09384] mt-1 font-mono">
                       Preview: {formatRupiah(Number(price) || 0)}
                     </div>
                   </div>
 
                   {/* Duration */}
                   <div>
-                    <label className="block text-xs font-semibold text-[#524B45] mb-1">
+                    <label className="block text-xs font-semibold text-[#524B45] dark:text-[#C5B9AC] mb-1">
                       Durasi Treatment
                     </label>
                     <input
@@ -324,7 +324,7 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                       value={duration}
                       onChange={(e) => setDuration(e.target.value)}
                       placeholder="Contoh: 60 Menit, 90 Menit"
-                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#DDD5C7] rounded-lg text-[#242120]"
+                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] dark:bg-[#25201B] border border-[#DDD5C7] dark:border-[#3D352D] rounded-lg text-[#242120] dark:text-[#FAF5EE]"
                     />
                   </div>
 
@@ -335,16 +335,16 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                       id="popularCheck"
                       checked={isPopular}
                       onChange={(e) => setIsPopular(e.target.checked)}
-                      className="w-4 h-4 text-[#8C6D58] rounded border-[#DDD5C7] focus:ring-[#8C6D58]"
+                      className="w-4 h-4 text-[#8C6D58] rounded border-[#DDD5C7] dark:border-[#3D352D] focus:ring-[#8C6D58]"
                     />
-                    <label htmlFor="popularCheck" className="text-xs font-medium text-[#423A33] cursor-pointer">
+                    <label htmlFor="popularCheck" className="text-xs font-medium text-[#423A33] dark:text-[#E2D8CC] cursor-pointer">
                       Tandai sebagai Layanan Favorit / Rekomendasi
                     </label>
                   </div>
 
                   {/* Description */}
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-[#524B45] mb-1">
+                    <label className="block text-xs font-semibold text-[#524B45] dark:text-[#C5B9AC] mb-1">
                       Deskripsi Layanan
                     </label>
                     <textarea
@@ -352,13 +352,13 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="Jelaskan manfaat dan pengalaman yang didapatkan klien..."
-                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#DDD5C7] rounded-lg text-[#242120]"
+                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] dark:bg-[#25201B] border border-[#DDD5C7] dark:border-[#3D352D] rounded-lg text-[#242120] dark:text-[#FAF5EE]"
                     />
                   </div>
 
                   {/* Features list (one per line) */}
                   <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-[#524B45] mb-1">
+                    <label className="block text-xs font-semibold text-[#524B45] dark:text-[#C5B9AC] mb-1">
                       Keunggulan / Item Termasuk (1 per baris)
                     </label>
                     <textarea
@@ -366,7 +366,7 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                       value={featuresText}
                       onChange={(e) => setFeaturesText(e.target.value)}
                       placeholder="Contoh:&#10;Double cleansing organik&#10;Serum hyaluronic acid&#10;Cryo soothing globe massage"
-                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] border border-[#DDD5C7] rounded-lg text-[#242120] font-mono text-xs"
+                      className="w-full px-3 py-2 text-sm bg-[#FAF8F5] dark:bg-[#25201B] border border-[#DDD5C7] dark:border-[#3D352D] rounded-lg text-[#242120] dark:text-[#FAF5EE] font-mono text-xs"
                     />
                   </div>
                 </div>
@@ -374,7 +374,7 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                 <div className="flex justify-end gap-3 pt-2">
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-[#2E2824] hover:bg-[#433B35] rounded-lg transition-all"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-[#2E2824] dark:bg-[#D4A76A] dark:text-[#181410] hover:bg-[#433B35] dark:hover:bg-[#E2BA84] rounded-lg transition-all cursor-pointer"
                   >
                     <Plus className="w-4 h-4" />
                     <span>{editingId ? 'Simpan Perubahan' : 'Tambahkan ke Price List'}</span>
@@ -385,41 +385,41 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
               {/* List of current services */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-serif-brand text-lg text-[#242120]">
+                  <h4 className="font-serif-brand text-lg text-[#242120] dark:text-[#FAF5EE]">
                     Daftar Layanan Tersimpan ({services.length})
                   </h4>
                   <button
                     onClick={handleResetToDefault}
-                    className="flex items-center gap-1.5 text-xs text-[#8C6D58] hover:text-[#524538]"
+                    className="flex items-center gap-1.5 text-xs text-[#8C6D58] dark:text-[#D4A76A] hover:text-[#524538] dark:hover:text-[#FAF5EE] cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Kembalikan Default</span>
                   </button>
                 </div>
 
-                <div className="divide-y divide-[#E8E2D9] bg-white rounded-xl border border-[#DDD5C7] overflow-hidden">
+                <div className="divide-y divide-[#E8E2D9] dark:divide-[#2D2620] bg-white dark:bg-[#1E1A17] rounded-xl border border-[#DDD5C7] dark:border-[#332C25] overflow-hidden">
                   {services.map((item) => (
                     <div
                       key={item.id}
-                      className="p-3.5 sm:p-4 flex items-center justify-between gap-4 hover:bg-[#FAF8F5] transition-colors"
+                      className="p-3.5 sm:p-4 flex items-center justify-between gap-4 hover:bg-[#FAF8F5] dark:hover:bg-[#25201B] transition-colors"
                     >
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm text-[#242120] truncate">
+                          <span className="font-semibold text-sm text-[#242120] dark:text-[#FAF5EE] truncate">
                             {item.name}
                           </span>
                           {item.isPopular && (
-                            <span className="text-[10px] bg-[#F7ECE1] text-[#8C5D39] px-1.5 py-0.2 rounded font-medium">
+                            <span className="text-[10px] bg-[#F7ECE1] dark:bg-[#342417] text-[#8C5D39] dark:text-[#F3BA78] px-1.5 py-0.2 rounded font-medium border border-[#E8D1BE] dark:border-[#523A25]">
                               Favorit
                             </span>
                           )}
                         </div>
-                        <div className="text-xs text-[#7A7067] flex items-center gap-2 mt-0.5">
+                        <div className="text-xs text-[#7A7067] dark:text-[#9E9284] flex items-center gap-2 mt-0.5">
                           <span>{item.categoryLabel}</span>
                           <span>·</span>
                           <span>{item.duration}</span>
                           <span>·</span>
-                          <span className="font-mono font-semibold text-[#242120]">
+                          <span className="font-mono font-semibold text-[#242120] dark:text-[#FAF5EE]">
                             {item.formattedPrice}
                           </span>
                         </div>
@@ -428,14 +428,14 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                       <div className="flex items-center gap-2 shrink-0">
                         <button
                           onClick={() => handleStartEdit(item)}
-                          className="p-2 text-[#6B5E52] hover:text-[#242120] hover:bg-[#EFEAE2] rounded-lg"
+                          className="p-2 text-[#6B5E52] dark:text-[#BAACA0] hover:text-[#242120] dark:hover:text-white hover:bg-[#EFEAE2] dark:hover:bg-[#2A241F] rounded-lg cursor-pointer"
                           title="Edit layanan ini"
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDeleteService(item.id)}
-                          className="p-2 text-rose-600 hover:text-rose-800 hover:bg-rose-50 rounded-lg"
+                          className="p-2 text-rose-600 dark:text-rose-400 hover:text-rose-800 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-lg cursor-pointer"
                           title="Hapus layanan ini"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -448,24 +448,24 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed">
+              <div className="p-4 bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/40 rounded-xl text-xs text-amber-900 dark:text-amber-200 leading-relaxed">
                 <div className="font-semibold mb-1 flex items-center gap-1.5">
-                  <AlertCircle className="w-4 h-4 text-amber-700" />
+                  <AlertCircle className="w-4 h-4 text-amber-700 dark:text-amber-400" />
                   Format Impor Price List Kustom
                 </div>
                 Anda dapat mengirimkan data price list kapan saja! Cukup salin template JSON di bawah ini atau tempelkan daftar data Anda ke kolom ini, lalu klik tombol <strong>Terapkan Data JSON</strong>.
               </div>
 
               {jsonError && (
-                <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-700 flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                <div className="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/40 rounded-lg text-xs text-rose-700 dark:text-rose-300 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0" />
                   <span>{jsonError}</span>
                 </div>
               )}
 
               {jsonSuccess && (
-                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-800 flex items-center gap-2">
-                  <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/40 rounded-lg text-xs text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>{jsonSuccess}</span>
                 </div>
               )}
@@ -475,7 +475,7 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                   rows={14}
                   value={rawJson}
                   onChange={(e) => setRawJson(e.target.value)}
-                  className="w-full p-3 font-mono text-xs bg-white border border-[#DDD5C7] rounded-xl text-[#242120] focus:ring-1 focus:ring-[#8C6D58]"
+                  className="w-full p-3 font-mono text-xs bg-white dark:bg-[#1E1A17] border border-[#DDD5C7] dark:border-[#3D352D] rounded-xl text-[#242120] dark:text-[#FAF5EE] focus:ring-1 focus:ring-[#8C6D58]"
                   placeholder="Paste JSON array here..."
                 />
               </div>
@@ -484,14 +484,14 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handleCopyJson}
-                    className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#4D453E] bg-white border border-[#DDD5C7] rounded-lg hover:bg-[#F2ECE1]"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#4D453E] dark:text-[#C5B9AC] bg-white dark:bg-[#1E1A17] border border-[#DDD5C7] dark:border-[#3D352D] rounded-lg hover:bg-[#F2ECE1] dark:hover:bg-[#2A241F] cursor-pointer"
                   >
                     <Copy className="w-3.5 h-3.5" />
                     <span>{copied ? 'Tersalin!' : 'Salin JSON'}</span>
                   </button>
                   <button
                     onClick={handleResetToDefault}
-                    className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#7A7067] hover:text-[#242120]"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#7A7067] dark:text-[#A09384] hover:text-[#242120] dark:hover:text-[#FAF5EE] cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Reset Contoh</span>
@@ -500,7 +500,7 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
 
                 <button
                   onClick={handleApplyJson}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-[#2E2824] hover:bg-[#433B35] rounded-xl shadow-xs"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold text-white bg-[#2E2824] dark:bg-[#D4A76A] dark:text-[#181410] hover:bg-[#433B35] dark:hover:bg-[#E2BA84] rounded-xl shadow-xs cursor-pointer"
                 >
                   <Upload className="w-4 h-4" />
                   <span>Terapkan Data JSON</span>
@@ -511,13 +511,13 @@ export const PriceListManagerModal: React.FC<PriceListManagerModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-[#E8E2D9] bg-white flex items-center justify-between">
-          <span className="text-xs text-[#7A7067]">
+        <div className="px-6 py-4 border-t border-[#E8E2D9] dark:border-[#2D2721] bg-white dark:bg-[#1E1A17] flex items-center justify-between">
+          <span className="text-xs text-[#7A7067] dark:text-[#9E9082]">
             Data tersimpan otomatis di browser lokal Anda.
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 text-xs font-medium text-[#242120] bg-[#EFEAE2] hover:bg-[#E5DED4] rounded-lg"
+            className="px-4 py-2 text-xs font-medium text-[#242120] dark:text-[#FAF5EE] bg-[#EFEAE2] dark:bg-[#2C2621] hover:bg-[#E5DED4] dark:hover:bg-[#38302A] rounded-lg cursor-pointer"
           >
             Tutup
           </button>

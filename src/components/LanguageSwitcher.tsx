@@ -15,12 +15,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
 
   return (
     <div
-      className={`inline-flex items-center p-1 bg-[#EFEAE2] border border-[#DDD5C7] rounded-xl text-xs transition-colors shadow-2xs ${className}`}
+      className={`inline-flex items-center p-1 bg-[#EFEAE2] dark:bg-[#25211D] border border-[#DDD5C7] dark:border-[#3D352E] rounded-xl text-xs transition-colors shadow-2xs ${className}`}
       role="group"
       aria-label={lang === 'en' ? 'Select language' : 'Pilih bahasa'}
     >
       <div
-        className="pl-1.5 pr-1 text-[#8C7E72] flex items-center"
+        className="pl-1.5 pr-1 text-[#8C7E72] dark:text-[#A09486] flex items-center"
         aria-hidden="true"
         title={lang === 'en' ? 'Language' : 'Bahasa'}
       >
@@ -33,8 +33,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           onClick={() => setLang('id')}
           className={`px-2 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
             lang === 'id'
-              ? 'bg-white text-[#242120] shadow-xs ring-1 ring-[#D8CEBF]'
-              : 'text-[#6E6358] hover:text-[#242120] hover:bg-[#E5DED4]/60'
+              ? 'bg-white dark:bg-[#342D26] text-[#242120] dark:text-[#FAF5EE] shadow-xs ring-1 ring-[#D8CEBF] dark:ring-[#52463B]'
+              : 'text-[#6E6358] dark:text-[#B0A496] hover:text-[#242120] dark:hover:text-[#F5EFE6] hover:bg-[#E5DED4]/60 dark:hover:bg-[#2F2924]'
           }`}
           aria-pressed={lang === 'id'}
           title="Bahasa Indonesia"
@@ -48,8 +48,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           onClick={() => setLang('en')}
           className={`px-2 py-1 rounded-lg text-xs font-semibold transition-all whitespace-nowrap shrink-0 ${
             lang === 'en'
-              ? 'bg-white text-[#242120] shadow-xs ring-1 ring-[#D8CEBF]'
-              : 'text-[#6E6358] hover:text-[#242120] hover:bg-[#E5DED4]/60'
+              ? 'bg-white dark:bg-[#342D26] text-[#242120] dark:text-[#FAF5EE] shadow-xs ring-1 ring-[#D8CEBF] dark:ring-[#52463B]'
+              : 'text-[#6E6358] dark:text-[#B0A496] hover:text-[#242120] dark:hover:text-[#F5EFE6] hover:bg-[#E5DED4]/60 dark:hover:bg-[#2F2924]'
           }`}
           aria-pressed={lang === 'en'}
           title="English"
